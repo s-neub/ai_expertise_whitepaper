@@ -133,10 +133,10 @@
 </head>
 <body>
 
-    <div style="background: linear-gradient(rgba(245, 250, 245, 0.05), rgba(245, 250, 245, 0.05)), url('https://github.com/s-neub/logo/blob/main/original-background-10.png'); background-size: cover; background-position: center; border-top: 1px solid #d6d6d1; border-right: 2px solid #4ade80; border-left: 3px solid #1eb55b; border-bottom: 4px solid #006630; border-radius: 8px; margin: 16px 0; padding: 20px; box-shadow: 2px 4px 10px rgba(0,0,0,1.00); font-family: 'Poppins', 'Segoe UI', Helvetica, Calibri, Roboto, sans-serif;">
+    <div style="background: linear-gradient(rgba(245, 250, 245, 0.05), rgba(245, 250, 245, 0.05)), url('https://raw.githubusercontent.com/s-neub/logo/main/original-background-10.png'); background-size: cover; background-position: center; border-top: 1px solid #d6d6d1; border-right: 2px solid #4ade80; border-left: 3px solid #1eb55b; border-bottom: 4px solid #006630; border-radius: 8px; margin: 16px 0; padding: 20px; box-shadow: 2px 4px 10px rgba(0,0,0,1.00); font-family: 'Poppins', 'Segoe UI', Helvetica, Calibri, Roboto, sans-serif;">
         <div style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
             <div style="padding: 3px; flex-shrink: 0;">
-                <img src="https://github.com/s-neub/logo/blob/main/modelop-runtime.png?raw=true" width="218" height="90" alt="ModelOp Logo"/>
+                <img src="https://raw.githubusercontent.com/s-neub/logo/main/modelop-runtime.png" width="218" height="90" alt="ModelOp Logo"/>
             </div>
             <div style="flex-grow: 1;">
                 <h1 style="margin: 0; font-family: 'Poppins', sans-serif; color: #0d1b14; border-bottom: none; font-weight: 700;">The Illusion of the GenAI Expert</h1>
@@ -360,6 +360,8 @@
             targetHours: 10000,
             weeksPerYear: 52
         };
+        
+        const weeksElapsed = [0, 52, 104, 156, 173.33, 208, 260, 312]; // Time points for chart updates
 
         const chartColors = {
             green: '#006630',
@@ -376,6 +378,8 @@
         const hoursDisplay = document.getElementById('hoursDisplay');
         const yearDisplay = document.getElementById('yearDisplay');
         const contextMessage = document.getElementById('contextMessage');
+
+        let expertiseChart; // Global reference for the chart update
 
         function updateCalculator() {
             const hoursPerWeek = parseInt(hoursSlider.value);
@@ -396,10 +400,16 @@
                 contextMessage.className = "text-sm text-modelop-danger font-medium mt-2";
                 contextMessage.innerHTML = `&#9888; Requires ${yearsLeft} more years of continuous work.`;
             }
+
+            // Update the dynamic line in the chart
+            if (expertiseChart) {
+                expertiseChart.data.datasets[0].label = `Your Pace (${hoursPerWeek} hrs/wk)`;
+                expertiseChart.data.datasets[0].data = weeksElapsed.map(weeks => Math.round(weeks * hoursPerWeek));
+                expertiseChart.update();
+            }
         }
 
         hoursSlider.addEventListener('input', updateCalculator);
-        updateCalculator();
 
         // --- Tabs ---
         function switchTab(tabId) {
@@ -427,11 +437,25 @@
 
         // 1. Line Chart
         const ctxCurve = document.getElementById('expertiseCurveChart').getContext('2d');
-        new Chart(ctxCurve, {
+        expertiseChart = new Chart(ctxCurve, {
             type: 'line',
             data: {
                 labels: ['Nov 2022', 'Nov 2023', 'Nov 2024', 'Nov 2025', 'Mar 2026', 'Nov 2026', 'Nov 2027', 'Nov 2028'],
                 datasets: [
+                    {
+                        label: 'Your Pace',
+                        data: [], // Will be populated immediately by updateCalculator()
+                        borderColor: 'rgb(229, 254, 238)',
+                        backgroundColor: 'transparent',
+                        borderWidth: 4,
+                        borderDash: [6, 4],
+                        tension: 0, // Explicitly linear
+                        fill: false,
+                        pointBackgroundColor: 'rgb(229, 254, 238)',
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        order: -1 // Renders this line on top
+                    },
                     {
                         label: 'Founder (60 hrs/wk)',
                         data: [0, 3120, 6240, 9360, 10400, 12480, 15600, 18720],
@@ -477,7 +501,15 @@
                 maintainAspectRatio: false, 
                 plugins: {
                     legend: { position: 'bottom', labels: { padding: 15, usePointStyle: true, boxWidth: 8 } },
-                    tooltip: { mode: 'index', intersect: false, backgroundColor: chartColors.paper, borderColor: chartColors.border, borderWidth: 1 }
+                    tooltip: { 
+                        mode: 'index', 
+                        intersect: false, 
+                        backgroundColor: chartColors.paper,
+                        titleColor: chartColors.text,
+                        bodyColor: chartColors.text, 
+                        borderColor: chartColors.border, 
+                        borderWidth: 1 
+                    }
                 },
                 scales: {
                     y: { beginAtZero: true, grid: { color: 'rgba(214, 214, 209, 0.5)' } },
@@ -486,6 +518,9 @@
                 interaction: { mode: 'nearest', axis: 'x', intersect: false }
             }
         });
+
+        // Initialize calculator to populate the chart's dynamic line on load
+        updateCalculator();
 
         // 2. Doughnut Chart
         const ctxDoughnut = document.getElementById('productionDoughnutChart').getContext('2d');
@@ -508,7 +543,11 @@
                 plugins: {
                     legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true, font: { size: 12 } } },
                     tooltip: {
-                        backgroundColor: chartColors.paper, borderColor: chartColors.border, borderWidth: 1,
+                        backgroundColor: chartColors.paper, 
+                        titleColor: chartColors.text,
+                        bodyColor: chartColors.text,
+                        borderColor: chartColors.border, 
+                        borderWidth: 1,
                         callbacks: { label: function(context) { return ` ${context.label}: ${context.parsed}% of Production`; } }
                     }
                 }
