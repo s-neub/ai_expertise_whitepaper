@@ -211,38 +211,39 @@
             </h2>
             <p style="margin-bottom: 24px;">This section contrasts modern rapid-prototyping ("Vibe Coding") with traditional, governed Machine Learning. Use the tabs to compare profiles, and view the chart to see what powers production systems today.</p>
 
-            <div class="flex flex-col lg:flex-row gap-12 items-start">
+            <!-- FORCED ROW LAYOUT: Grid 2 columns (1/2 and 1/2) agnostic to screen width -->
+            <div class="grid grid-cols-2 gap-4 lg:gap-12 items-start">
                 
-                <div class="lg:w-1/2 w-full bg-white rounded-xl border border-modelop-border overflow-hidden">
+                <div class="col-span-1 bg-white rounded-xl border border-modelop-border overflow-hidden min-w-0">
                     <div class="flex border-b border-modelop-border bg-gray-50">
-                        <button id="btn-vibe" class="flex-1 py-4 text-center text-sm font-semibold uppercase tracking-wide tab-active transition" onclick="switchTab('vibe')">
+                        <button id="btn-vibe" class="flex-1 py-2 lg:py-4 text-center text-[10px] lg:text-sm font-semibold uppercase tracking-wide tab-active transition" onclick="switchTab('vibe')">
                             The "Vibe Coder"
                         </button>
-                        <button id="btn-ml" class="flex-1 py-4 text-center text-sm font-semibold uppercase tracking-wide tab-inactive transition" onclick="switchTab('ml')">
+                        <button id="btn-ml" class="flex-1 py-2 lg:py-4 text-center text-[10px] lg:text-sm font-semibold uppercase tracking-wide tab-inactive transition" onclick="switchTab('ml')">
                             ML Foundation
                         </button>
                     </div>
                     
-                    <div id="content-vibe" class="p-8">
-                        <h3 class="text-xl font-bold text-modelop-dark mb-2">Generative AI (The Vanguard)</h3>
-                        <div class="inline-block px-2 py-1 bg-modelop-danger text-white text-xs font-bold rounded mb-4 shadow-sm">High Governance Risk</div>
-                        <p class="text-gray-600 mb-6 border-l-4 border-modelop-danger pl-4">
+                    <div id="content-vibe" class="p-4 lg:p-8">
+                        <h3 class="text-base lg:text-xl font-bold text-modelop-dark mb-2">Generative AI (The Vanguard)</h3>
+                        <div class="inline-block px-2 py-1 bg-modelop-danger text-white text-[10px] lg:text-xs font-bold rounded mb-4 shadow-sm">High Governance Risk</div>
+                        <p class="text-xs lg:text-sm text-gray-600 mb-4 lg:mb-6 border-l-4 border-modelop-danger pl-3 lg:pl-4">
                             Highly proficient at prompting and wrapping APIs. Excellent for rapid MVP prototyping and content generation, but struggles with rigid enterprise constraints.
                         </p>
-                        <ul class="space-y-2 text-sm text-gray-700">
+                        <ul class="space-y-2 text-[10px] lg:text-sm text-gray-700">
                             <li><strong class="text-modelop-danger">Nature:</strong> Probabilistic, highly creative, unpredictable.</li>
                             <li><strong class="text-modelop-danger">Weaknesses:</strong> Hallucination control, API latency, statistical verification.</li>
                             <li><strong class="text-modelop-danger">ModelOp Tier:</strong> High Risk (Requires strict HITL).</li>
                         </ul>
                     </div>
 
-                    <div id="content-ml" class="p-8 hidden">
-                        <h3 class="text-xl font-bold text-modelop-dark mb-2">Traditional ML (The Backbone)</h3>
-                        <div class="inline-block px-2 py-1 bg-modelop-green text-white text-xs font-bold rounded mb-4 shadow-sm">Governed Production State</div>
-                        <p class="text-gray-600 mb-6 border-l-4 border-modelop-green pl-4">
+                    <div id="content-ml" class="p-4 lg:p-8 hidden">
+                        <h3 class="text-base lg:text-xl font-bold text-modelop-dark mb-2">Traditional ML (The Backbone)</h3>
+                        <div class="inline-block px-2 py-1 bg-modelop-green text-white text-[10px] lg:text-xs font-bold rounded mb-4 shadow-sm">Governed Production State</div>
+                        <p class="text-xs lg:text-sm text-gray-600 mb-4 lg:mb-6 border-l-4 border-modelop-green pl-3 lg:pl-4">
                             Possesses a foundational background in statistics, data structures, and traditional algorithms. Essential for mission-critical deployments.
                         </p>
-                        <ul class="space-y-2 text-sm text-gray-700">
+                        <ul class="space-y-2 text-[10px] lg:text-sm text-gray-700">
                             <li><strong class="text-modelop-green">Nature:</strong> Deterministic, statistical, and mathematically verifiable.</li>
                             <li><strong class="text-modelop-green">Strengths:</strong> Fraud detection, demand forecasting, recommendation engines.</li>
                             <li><strong class="text-modelop-green">ModelOp Tier:</strong> Low Risk (Standard Runtime).</li>
@@ -250,10 +251,10 @@
                     </div>
                 </div>
 
-                <div class="lg:w-1/2 w-full text-center">
+                <div class="col-span-1 text-center min-w-0">
                     <h3 style="font-size: 1.1em; color: #006630; margin-top: 0; margin-bottom: 8px; font-weight: 600;">Enterprise AI Production Reality</h3>
-                    <p class="text-sm text-gray-500 mb-6 border-b border-gray-200 pb-4">Despite the hype, what is actually powering regulated industry deployments in 2026?</p>
-                    <div class="chart-container" style="height: 300px;">
+                    <p class="text-xs lg:text-sm text-gray-500 mb-6 border-b border-gray-200 pb-4">Despite the hype, what is actually powering regulated industry deployments in 2026?</p>
+                    <div class="chart-container" style="height: 100%; min-height: 250px; max-height: 350px;">
                         <canvas id="productionDoughnutChart"></canvas>
                     </div>
                 </div>
@@ -420,13 +421,13 @@
             const contentMl = document.getElementById('content-ml');
 
             if (tabId === 'vibe') {
-                btnVibe.className = "flex-1 py-4 text-center text-sm font-semibold uppercase tracking-wide tab-active transition";
-                btnMl.className = "flex-1 py-4 text-center text-sm font-semibold uppercase tracking-wide tab-inactive transition";
+                btnVibe.className = "flex-1 py-2 lg:py-4 text-center text-[10px] lg:text-sm font-semibold uppercase tracking-wide tab-active transition";
+                btnMl.className = "flex-1 py-2 lg:py-4 text-center text-[10px] lg:text-sm font-semibold uppercase tracking-wide tab-inactive transition";
                 contentVibe.classList.remove('hidden');
                 contentMl.classList.add('hidden');
             } else {
-                btnMl.className = "flex-1 py-4 text-center text-sm font-semibold uppercase tracking-wide tab-active transition";
-                btnVibe.className = "flex-1 py-4 text-center text-sm font-semibold uppercase tracking-wide tab-inactive transition";
+                btnMl.className = "flex-1 py-2 lg:py-4 text-center text-[10px] lg:text-sm font-semibold uppercase tracking-wide tab-active transition";
+                btnVibe.className = "flex-1 py-2 lg:py-4 text-center text-[10px] lg:text-sm font-semibold uppercase tracking-wide tab-inactive transition";
                 contentMl.classList.remove('hidden');
                 contentVibe.classList.add('hidden');
             }
