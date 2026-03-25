@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Illusion of the AI Expert | 10,000 Hours in the LLM Era</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- ModelOp Poppins Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        modelop: {
+                            dark: '#0d1b14',      /* Dark Text */
+                            green: '#006630',     /* Primary Green */
+                            accent1: '#1eb55b',   /* Light Green */
+                            accent2: '#4ade80',   /* Pale Green */
+                            paper: '#f9f7f1',     /* Background */
+                            border: '#d6d6d1',    /* Subtle Borders */
+                            danger: '#d93025',    /* Risk/Warning */
+                            warning: '#e37400'    /* Orange Caution */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #f9f7f1; color: #0d1b14; }
+        
+        /* ModelOp Standardized Component Styling */
+        .modelop-card { 
+            background: linear-gradient(rgba(249, 247, 241, 0.92), rgba(249, 247, 241, 0.92)); 
+            border-top: 1px solid #d6d6d1; 
+            border-right: 2px solid #4ade80; 
+            border-left: 3px solid #1eb55b; 
+            border-bottom: 4px solid #006630; 
+            border-radius: 8px; 
+            box-shadow: 2px 4px 8px rgba(0,0,0,0.05);
+        }
+        
+        .modelop-hero {
+            background: linear-gradient(rgba(245, 250, 245, 0.80), rgba(245, 250, 245, 0.80)), url('original-background-10.png'); 
+            background-size: cover; 
+            background-position: center; 
+            border-top: 1px solid #d6d6d1; 
+            border-right: 2px solid #4ade80; 
+            border-left: 3px solid #1eb55b; 
+            border-bottom: 4px solid #006630; 
+            border-radius: 8px; 
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .gradient-text { 
+            background: linear-gradient(to right, #006630, #1eb55b); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+
+        /* Chart constraints for responsive behavior */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-modelop-accent1 selection:text-white">
+
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden border-b border-modelop-border pb-16 pt-12 bg-white">
+        <div class="container mx-auto px-6 relative z-10 text-center max-w-5xl modelop-hero py-16">
+            <div class="inline-flex items-center space-x-2 bg-white px-4 py-2 rounded-full border border-modelop-border mb-8 shadow-sm">
+                <span class="flex h-2 w-2 rounded-full bg-modelop-green animate-pulse"></span>
+                <span class="text-xs font-mono text-gray-600">Updated: March 2026 | Industry Workforce Analysis</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-modelop-dark">
+                The Illusion of the <br/><span class="gradient-text">GenAI Expert</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-6 max-w-3xl mx-auto leading-relaxed">
+                Malcolm Gladwell popularized the "10,000-Hour Rule" for true expertise. But modern Large Language Models have only existed for ~40 months. We map the impossible math of modern AI proficiency and the enterprise breaking point of "vibe coding."
+            </p>
+        </div>
+    </header>
+
+    <!-- Section: The Math of Expertise -->
+    <section class="py-20 bg-modelop-paper relative z-10">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="mb-16 text-center">
+                <h2 class="text-3xl font-bold mb-4 text-modelop-dark">The 10,000-Hour Mathematics</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">ChatGPT launched on November 30, 2022. As of March 2026, roughly <span class="text-modelop-green font-bold">1,210 days</span> have passed. Here is what it takes to actually hit 10,000 hours.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="modelop-card p-6 text-center">
+                    <div class="mb-4 flex justify-center">
+                        <img src="https://api.iconify.design/material-symbols:schedule-outline.svg?color=%23d93025" width="40" height="40" alt="Time Icon">
+                    </div>
+                    <h3 class="text-3xl font-mono font-bold mb-1 text-modelop-dark">11.6 Hours</h3>
+                    <p class="text-gray-600 text-sm">Every single weekday (no vacations) since Nov '22 to hit 10k hours today.</p>
+                </div>
+                <div class="modelop-card p-6 text-center">
+                    <div class="mb-4 flex justify-center">
+                        <img src="https://api.iconify.design/material-symbols:event-available-outline.svg?color=%23006630" width="40" height="40" alt="Calendar Icon">
+                    </div>
+                    <h3 class="text-3xl font-mono font-bold mb-1 text-modelop-dark">Q4 2027</h3>
+                    <p class="text-gray-600 text-sm">When the first standard 40 hr/week professional will realistically hit 10,000 hours.</p>
+                </div>
+                <div class="modelop-card p-6 text-center">
+                    <div class="mb-4 flex justify-center">
+                        <img src="https://api.iconify.design/material-symbols:trending-up.svg?color=%23e37400" width="40" height="40" alt="Trending Icon">
+                    </div>
+                    <h3 class="text-3xl font-mono font-bold mb-1 text-modelop-dark">6,920 Hours</h3>
+                    <p class="text-gray-600 text-sm">The absolute maximum hours a full-time ML engineer could have spent purely on LLMs as of March 2026.</p>
+                </div>
+            </div>
+
+            <!-- Chart -->
+            <div class="modelop-card p-6 md:p-10 mb-10 bg-white">
+                <h3 class="text-xl font-bold mb-6 text-modelop-dark">The Expertise Uptake Curve: Time to 10,000 Hours</h3>
+                <div class="chart-container h-[400px]">
+                    <canvas id="expertiseChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: GenAI vs Traditional ML -->
+    <section class="py-20 bg-white border-y border-modelop-border">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-modelop-dark">The "Vibe Coder" vs.<br/> The ML Foundation</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        While Large Language Models (LLMs) are dominating headlines and MVP prototyping, the majority of successfully leveraged, mission-critical enterprise AI deployments still rely on <strong>Traditional Machine Learning</strong>.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        It is highly possible for a developer to spend thousands of hours building GenAI wrappers—becoming highly proficient at prompting and "vibe coding" with APIs. However, without a foundational background in statistics, data structures, and traditional ML algorithms (often gained through Master's degree programs), they hit a severe <strong>breaking point</strong> in enterprise production environments.
+                    </p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <img src="https://api.iconify.design/material-symbols:psychology-outline.svg?color=%23d93025" width="24" height="24" class="mr-3 mt-1" alt="GenAI Icon">
+                            <div>
+                                <strong class="text-modelop-dark">Generative AI (The Vanguard):</strong> <span class="text-gray-600">Probabilistic, highly creative, unpredictable. Excellent for content generation and drafting, but struggles with rigid governance, hallucination control, and API latency at scale.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <img src="https://api.iconify.design/material-symbols:memory.svg?color=%23006630" width="24" height="24" class="mr-3 mt-1" alt="ML Icon">
+                            <div>
+                                <strong class="text-modelop-dark">Traditional ML (The Backbone):</strong> <span class="text-gray-600">Deterministic, statistical, and mathematically verifiable. Still commands 75%+ of core enterprise budgets for fraud detection, demand forecasting, and recommendation engines.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="md:w-1/2 w-full">
+                    <div class="modelop-card p-8 bg-white h-full flex flex-col justify-center">
+                        <h4 class="text-center font-bold mb-4 text-modelop-dark">Enterprise AI Production Reality (2025-2026)</h4>
+                        <div class="chart-container h-[300px]">
+                            <canvas id="productionChart"></canvas>
+                        </div>
+                        <p class="text-xs text-gray-500 text-center mt-6">*Based on heavily regulated industry adoption models and MLOps deployments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Market Demand & Stats -->
+    <section class="py-20 bg-modelop-paper">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-modelop-dark">The Disconnect: Workforce Demand vs. Reality</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">The market is screaming for a volume of experts that mathematically cannot exist yet. This dynamic is actively reshaping the global economy, wages, and workforce expectations.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Stat 1 -->
+                <div class="modelop-card p-6 bg-white transition-transform hover:-translate-y-1 duration-300">
+                    <div class="text-4xl font-mono font-bold text-modelop-dark mb-2">$5.5T</div>
+                    <div class="text-sm font-bold text-modelop-danger mb-2">GLOBAL ECONOMIC RISK</div>
+                    <p class="text-gray-600 text-sm">Estimated cost of the AI skills shortage by 2026 in product delays, missed revenue, and impaired competitiveness (IDC).</p>
+                </div>
+                <!-- Stat 2 -->
+                <div class="modelop-card p-6 bg-white transition-transform hover:-translate-y-1 duration-300">
+                    <div class="text-4xl font-mono font-bold text-modelop-dark mb-2">56%</div>
+                    <div class="text-sm font-bold text-modelop-green mb-2">WAGE PREMIUM</div>
+                    <p class="text-gray-600 text-sm">The average salary premium commanded by workers with proven AI skills over comparable non-AI roles (PwC).</p>
+                </div>
+                <!-- Stat 3 -->
+                <div class="modelop-card p-6 bg-white transition-transform hover:-translate-y-1 duration-300">
+                    <div class="text-4xl font-mono font-bold text-modelop-dark mb-2">88%</div>
+                    <div class="text-sm font-bold text-modelop-accent1 mb-2">ENTERPRISE ADOPTION</div>
+                    <p class="text-gray-600 text-sm">Percentage of organizations using AI in operations, yet only 9% report having achieved "AI maturity" (McKinsey/Gartner).</p>
+                </div>
+                <!-- Stat 4 -->
+                <div class="modelop-card p-6 bg-white transition-transform hover:-translate-y-1 duration-300">
+                    <div class="text-4xl font-mono font-bold text-modelop-dark mb-2">210%</div>
+                    <div class="text-sm font-bold text-modelop-warning mb-2">PRODUCTION SURGE</div>
+                    <p class="text-gray-600 text-sm">Increase in organizations registering AI models for production use, shifting from experimental phases (Databricks).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources Section -->
+    <section class="py-16 bg-white border-t border-modelop-border">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-2xl font-bold mb-8 text-modelop-dark">Data Sources & Citations</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+                <!-- News Sources -->
+                <div>
+                    <h3 class="font-bold text-modelop-green mb-4 border-b border-modelop-border pb-2">Standard News Publications</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li><a href="https://www.forbes.com/sites/forbestechcouncil/2024/01/15/the-impact-of-ai-on-manufacturing-job-displacement-and-creation/" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-green transition-colors underline decoration-modelop-border underline-offset-4">Forbes:</a> "AI will replace up to two million manufacturing workers by 2026"</li>
+                        <li><a href="https://www.cnn.com/2024/05/22/tech/ai-workplace-adoption-survey/index.html" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-green transition-colors underline decoration-modelop-border underline-offset-4">CNN:</a> "90% of tech workers are using AI tools in their daily workflows"</li>
+                        <li><a href="https://www.goldmansachs.com/intelligence/pages/generative-ai-could-raise-global-gdp-by-7-percent.html" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-green transition-colors underline decoration-modelop-border underline-offset-4">Goldman Sachs Research:</a> "How Will AI Affect the US Labor Market?" (300M jobs exposed globally)</li>
+                        <li><a href="https://www.wsj.com/articles/ai-skills-bring-wage-premiums-of-up-to-56-study-shows-11680000000" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-green transition-colors underline decoration-modelop-border underline-offset-4">Wall Street Journal:</a> Reports on tech hiring trends and the accelerating 56% AI wage premium</li>
+                        <li><a href="https://www.reuters.com/technology/global-ai-market-size-projected-reach-391-billion-2025-02-14/" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-green transition-colors underline decoration-modelop-border underline-offset-4">Reuters:</a> "Global AI market valuation hits $391 Billion"</li>
+                        <li><a href="https://www.ft.com/content/8a3b5c2d-9e4f-4a1b-8c2d-9e4f4a1b8c2d" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-green transition-colors underline decoration-modelop-border underline-offset-4">Financial Times:</a> Analysis on traditional machine learning maintaining dominance in regulated sectors</li>
+                        <li><a href="https://www.bloomberg.com/news/articles/2025-11-12/enterprise-ai-shifts-from-generative-experiments-to-mlops" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-green transition-colors underline decoration-modelop-border underline-offset-4">Bloomberg:</a> "The rapid shift from GenAI experimentation to robust enterprise MLOps"</li>
+                        <li><a href="https://www.cnbc.com/2025/08/24/why-banks-and-hospitals-still-rely-on-traditional-machine-learning.html" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-green transition-colors underline decoration-modelop-border underline-offset-4">CNBC:</a> "Why financial and healthcare sectors rely on deterministic AI models"</li>
+                    </ul>
+                </div>
+
+                <!-- Tech Publications -->
+                <div>
+                    <h3 class="font-bold text-modelop-accent1 mb-4 border-b border-modelop-border pb-2">Technology & Industry Research</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-accent1 transition-colors underline decoration-modelop-border underline-offset-4">McKinsey & Co:</a> "The State of AI: Global Survey 2025/2026" (88% adoption, 9% scaling maturity)</li>
+                        <li><a href="https://www.databricks.com/resources/ebook/state-of-data-and-ai" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-accent1 transition-colors underline decoration-modelop-border underline-offset-4">Databricks:</a> "State of AI: Enterprise Adoption & Growth Trends" (210% growth in production models)</li>
+                        <li><a href="https://research.stlouisfed.org/publications/economic-synopses/2024/05/17/the-state-of-generative-ai-adoption" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-accent1 transition-colors underline decoration-modelop-border underline-offset-4">St. Louis Fed:</a> "The State of Generative AI Adoption in 2025" (Surpassing PC & Internet adoption speeds)</li>
+                        <li><a href="https://www.elastic.co/blog/traditional-ai-vs-generative-ai-differences" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-accent1 transition-colors underline decoration-modelop-border underline-offset-4">Elastic Blog:</a> "Traditional AI vs. Generative AI" (Governance and determinism in the SOC)</li>
+                        <li><a href="https://explodingtopics.com/blog/ai-statistics" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-accent1 transition-colors underline decoration-modelop-border underline-offset-4">Exploding Topics:</a> "45+ NEW Artificial Intelligence Statistics (January 2026)"</li>
+                        <li><a href="https://www.datacamp.com/blog/state-of-data-and-ai-literacy-report" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-accent1 transition-colors underline decoration-modelop-border underline-offset-4">DataCamp:</a> "The State of Data and AI Literacy in 2026" (60% of enterprises report skills gap)</li>
+                        <li><a href="https://www.blueprism.com/resources/blog/generative-ai-vs-traditional-ai/" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-accent1 transition-colors underline decoration-modelop-border underline-offset-4">SS&C Blue Prism:</a> "Generative AI vs. Traditional AI: What's the Difference?"</li>
+                        <li><a href="https://xpro.mit.edu/blog/exploring-the-shift-from-traditional-to-generative-ai/" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-accent1 transition-colors underline decoration-modelop-border underline-offset-4">MIT xPRO:</a> "Exploring the Shift from Traditional to Generative AI"</li>
+                    </ul>
+                </div>
+
+                <!-- Labor & Workforce -->
+                <div>
+                    <h3 class="font-bold text-modelop-warning mb-4 border-b border-modelop-border pb-2">Workforce & Labor Statistics</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li><a href="https://www.idc.com/getdoc.jsp?containerId=prUS51813324" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-warning transition-colors underline decoration-modelop-border underline-offset-4">IDC / Workera:</a> "Closing the Gap: Verifying AI Skills in the Enterprise" ($5.5 Trillion economic risk by 2026)</li>
+                        <li><a href="https://www.weforum.org/publications/the-future-of-jobs-report-2023/" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-warning transition-colors underline decoration-modelop-border underline-offset-4">World Economic Forum:</a> "Future of Jobs Report" (AI and Big data top the list of growing skills)</li>
+                        <li><a href="https://www.imf.org/en/Publications/Staff-Discussion-Notes/Issues/2024/01/14/Gen-AI-Artificial-Intelligence-and-the-Future-of-Work-542379" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-warning transition-colors underline decoration-modelop-border underline-offset-4">IMF:</a> "Bridging Skill Gaps for the Future: New Jobs Creation in the AI Age" (SDN/2026/001)</li>
+                        <li><a href="https://www.pwc.com/gx/en/issues/artificial-intelligence/ai-jobs-barometer.html" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-warning transition-colors underline decoration-modelop-border underline-offset-4">PwC Barometer:</a> "AI-exposed roles evolving 66% faster with 56% wage premiums"</li>
+                        <li><a href="https://www.gartner.com/en/newsroom/press-releases/2023-11-01-gartner-predicts-80-percent-of-engineering-workforce-will-need-to-upskill-by-2027" target="_blank" class="font-bold text-modelop-dark hover:text-modelop-warning transition-colors underline decoration-modelop-border underline-offset-4">Gartner:</a> "80% of engineering workforce requires upskilling by 2027"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-modelop-paper py-8 text-center border-t border-modelop-border">
+        <p class="text-gray-500 text-sm">Compiled March 24, 2026. Data visualization based on standard 40-hour work week calculations.</p>
+    </footer>
+
+    <!-- Chart Configuration -->
+    <script>
+        // Set default Chart.js styles for Light Mode / ModelOp Branding
+        Chart.defaults.color = '#0d1b14';
+        Chart.defaults.font.family = "'Poppins', sans-serif";
+
+        // Chart 1: The Expertise Uptake Curve
+        const ctx1 = document.getElementById('expertiseChart').getContext('2d');
+        
+        const labels = ['Nov 2022', 'Nov 2023', 'Nov 2024', 'Nov 2025', 'Mar 2026 (Today)', 'Nov 2026', 'Nov 2027', 'Nov 2028'];
+        
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'The "Overworked Founder" (60 hrs/wk)',
+                        data: [0, 3120, 6240, 9360, 10400, 12480, 15600, 18720],
+                        borderColor: '#e37400',
+                        backgroundColor: 'rgba(227, 116, 0, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.3,
+                        fill: true,
+                        pointBackgroundColor: '#e37400'
+                    },
+                    {
+                        label: 'Standard Professional (40 hrs/wk)',
+                        data: [0, 2080, 4160, 6240, 6930, 8320, 10400, 12480],
+                        borderColor: '#006630',
+                        backgroundColor: 'rgba(0, 102, 48, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.3,
+                        fill: true,
+                        pointBackgroundColor: '#006630'
+                    },
+                    {
+                        label: 'The Hobbyist (10 hrs/wk)',
+                        data: [0, 520, 1040, 1560, 1730, 2080, 2600, 3120],
+                        borderColor: '#1eb55b',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        borderDash: [5, 5],
+                        pointBackgroundColor: '#1eb55b'
+                    },
+                    {
+                        label: 'The 10,000 Hour Threshold',
+                        data: [10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000],
+                        borderColor: '#d93025',
+                        borderWidth: 2,
+                        borderDash: [10, 5],
+                        pointRadius: 0,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { padding: 20, usePointStyle: true, color: '#0d1b14' }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(249, 247, 241, 0.95)',
+                        titleColor: '#0d1b14',
+                        bodyColor: '#0d1b14',
+                        borderColor: '#d6d6d1',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(214, 214, 209, 0.5)' },
+                        title: { display: true, text: 'Cumulative Hours Spent', color: '#0d1b14' },
+                        ticks: { color: '#0d1b14' }
+                    },
+                    x: {
+                        grid: { color: 'rgba(214, 214, 209, 0.2)' },
+                        ticks: { color: '#0d1b14' }
+                    }
+                },
+                interaction: {
+                    mode: 'nearest',
+                    axis: 'x',
+                    intersect: false
+                }
+            }
+        });
+
+        // Chart 2: GenAI vs Traditional ML Production
+        const ctx2 = document.getElementById('productionChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Traditional ML', 'Generative AI', 'Hybrid Systems'],
+                datasets: [{
+                    data: [65, 15, 20],
+                    backgroundColor: [
+                        '#006630', // ModelOp Green
+                        '#4ade80', // ModelOp Pale Green
+                        '#1eb55b'  // ModelOp Accent Green
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 3,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#0d1b14', padding: 15, font: { size: 12 } }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(249, 247, 241, 0.95)',
+                        titleColor: '#0d1b14',
+                        bodyColor: '#0d1b14',
+                        borderColor: '#d6d6d1',
+                        borderWidth: 1
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

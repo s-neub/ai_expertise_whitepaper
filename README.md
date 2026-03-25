@@ -1,0 +1,1 @@
+White paper SPA detailing the fallacy on a true 10,000hr experienced AI expert in 2026.
